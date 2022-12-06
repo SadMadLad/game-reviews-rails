@@ -1,0 +1,10 @@
+<div class="game-div">
+    <%= link_to render(game), game_path(game), game: game, class: "game" %>
+    <span class="icons">
+        <%= link_to "Delete", game_path(game), data: {
+            turbo_method: :delete,
+            turbo_confirm: "Are you sure?",
+        } %>
+        <%= link_to "Edit", edit_game_path(game) %>
+    </span>
+</div>

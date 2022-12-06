@@ -1,0 +1,26 @@
+<%# Controller: games#index %>
+<%# Link: /games/ %>
+
+<header>
+    <div class="about">
+        <h1>Check Out Your Favorite Games</h1>
+        <p>Explore our catalogue and see what do people have to say about them. Is it worth buying? Do they like it? The reviewers will answer your questions. </p>
+    </div>
+
+    <aside>
+        <%= show_svg("Gaming.svg") %>
+    </aside>
+</header>
+
+<section>
+    <h1>Games</h1>
+    <p>See our catalogue of fantastic games</p>
+
+    <div class="games">
+        <% @games.each do | game |%>
+            <%= render "complete_game", :game => game %>
+        <% end %>
+    </div>
+</section>
+
+<%= link_to "+", new_game_path, class: "new-game-button"%>

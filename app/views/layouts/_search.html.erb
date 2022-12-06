@@ -1,0 +1,4 @@
+<%= form_for :search, url: :search_games, method: :get, class: "search" do | form | %>
+    <%= form.text_field :search_query, class: "search-input" %>
+    <%= form.submit value: "Search", class: "search-button" %>
+<% end %>

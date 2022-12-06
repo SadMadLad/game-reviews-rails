@@ -1,0 +1,89 @@
+<%# Controller: games#show %>
+<%# Link: /games/:id %>
+
+<div class="main">
+
+    <main>
+        <div class="game-details">
+            
+            <div class="about">
+                <h1> <%= @game.title %> </h1>
+                <p> <%= @game.about %> </p>
+            </div>
+            
+            <div class="stats">
+                <div class="likes-and-dislikes">
+                    <div class="stat-box likes">Likes: <%= @game.likes %> </div>
+                    <div class="stat-box dislikes">Dislikes: <%= @game.dislikes %> </div>
+                </div>
+                <div class="stat-box number-of-reviews">
+                    Number of reviews: <%= @game.number_of_reviews %>
+                </div>
+            </div>
+
+            <div class="game-buttons">
+                <%= button_to "Like The Game", like_game_path(@game), method: :patch %>
+                <%= button_to "Dislike The Game", dislike_game_path(@game), method: :patch %>
+            </div>
+
+        </div>
+
+        <div class="img-container">
+            <img src="<%= @game.img_path %>"/>
+        </div>
+    </main>
+
+</div>
+
+<div class="comment-section">
+
+    <h1>Add your review!</h1>
+
+    <div class="comment-form">
+        <%= form_with model: [@game, @game.comments.build], class: "comment-form" do | form | %>
+            
+            <div class="comment-field">
+                <%= form.label :commenter %>
+                <%= form.text_field :commenter %>
+            </div>
+
+            <div class="comment-field">
+                <%= form.label :comment %>
+                <%= form.text_area :comment %>
+            </div>
+            
+            <div class="submit-comment">
+                <%= form.submit %>
+            </div>
+        
+        <% end %>
+    </div>
+
+    <div class="comments">
+        <h1>Previous Reviews</h1>
+        <% @game.comments.each do | comment | %>
+            <% if comment.id %>
+                <div class="comment">
+                    <% byebug %>
+                    <div class="commenter">
+                        <span class="commenter-says">
+                            <span class="commenter-name"><%= comment.commenter %></span> says
+                        </span>
+                        <div class="delete-comment">
+                            <%= link_to "Delete Comment", [comment.game, comment], data: {
+                                turbo_method: :delete,
+                                turbo_confirm: "Delete Comment?",
+                            } %>
+                        </div>
+                    </div>
+
+                    <div class="comment-body">
+                        <%= comment.comment %>
+                    </div>
+
+                </div>
+            <% end %>
+        <% end %>
+    </div>
+
+</div>

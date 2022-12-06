@@ -1,0 +1,23 @@
+<%# Used by: edit.html.erb + new.html.erb %>
+
+<div class="form">
+    <%= form_with model: game do | form |%>
+        
+        <%= form.label :title, "Game's Title: " %>
+        <%= form.text_field :title, class: "form-input" %>
+
+        <%= form.label :about, "Game's Description: "%>
+        <%= form.text_area :about, class: "form-input" %>
+
+        <%= form.label :img_path, "Game's Image Path: "%>
+        <%= form.url_field :img_path, class: "form-input" %>
+
+        <div class="submit">
+            <% if !game.errors.full_messages.empty? %>
+                <div class="error-message"> <%= game.errors.full_messages.first %> </div>
+            <% end %>
+            <%= form.submit %>
+        </div>
+
+    <% end %>
+</div>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>GameReviews</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+  
+    <nav>
+      <ul>
+        <li> <%= link_to "Home", root_path, class: "navbar-item" %> </li>
+        <li> <%= link_to "Games", games_path, class: "navbar-item" %> </li>
+      </ul>
+      <ul>
+        <%= render "layouts/search" %>
+        <h1> <%= link_to "GameReviews", root_path, class: "home-logo" %> </h1> 
+      </ul>
+    </nav>
+
+    <%= yield %>
+  </body>
+</html>

@@ -1,0 +1,1 @@
+puts Game.delete_all
